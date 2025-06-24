@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import './Navbar.css';
 
 const Navbar = () => {
@@ -16,12 +18,13 @@ const Navbar = () => {
         &#9776; {/* This is the ☰ icon */}
       </div>
 
-      <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#programs">Programs</a></li>
-        <li><a href="#contacts">Contacts</a></li>
-      </ul>
+     <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/about">About</Link></li>
+      <li><Link to="/programs">Programs</Link></li>
+      <li><Link to="/contacts">Contacts</Link></li>
+     </ul>
+
     </nav>  
   );
 };
