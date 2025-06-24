@@ -4,6 +4,8 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 
 from .models import db
+from .routes import api
+
 
 def create_app():
     app = Flask(__name__)
@@ -13,5 +15,8 @@ def create_app():
     db.init_app(app)
     Migrate(app, db)
     CORS(app)
+
+    app.register_blueprint(api)
+
 
     return app
