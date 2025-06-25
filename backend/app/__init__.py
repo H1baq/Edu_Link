@@ -6,7 +6,6 @@ from flask_cors import CORS
 from .models import db
 from .routes import api
 
-
 def create_app():
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
@@ -14,9 +13,7 @@ def create_app():
 
     db.init_app(app)
     Migrate(app, db)
-    CORS(app)
+    CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
 
-    app.register_blueprint(api)
-
-
+    app.register_blueprint(api, url_prefix="/api")
     return app
