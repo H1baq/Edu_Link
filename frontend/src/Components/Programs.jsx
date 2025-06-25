@@ -8,7 +8,7 @@ const Programs = () => {
   const [programs, setPrograms] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/programs')
+    fetch('http://localhost:5000/api/programs')
       .then((res) => res.json())
       .then((data) => setPrograms(data))
       .catch((err) => console.error("Error fetching programs:", err));
