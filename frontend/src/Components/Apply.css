@@ -1,0 +1,73 @@
+.apply-form {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fdfdfd;
+  border-radius: 12px;
+   margin-bottom: 5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.apply-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #2c3e50;
+}
+
+.apply-form input,
+.apply-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.apply-form input:focus,
+.apply-form select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.apply-form p {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.apply-form button {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.apply-form button:hover {
+  background: #0056b3;
+}
+
+
+.admin-dashboard {
+  padding: 1rem;
+  max-width: 600px;
+  margin: auto;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.stats p {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
