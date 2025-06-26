@@ -1,10 +1,20 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useEffect, useState } from 'react';
-import './Apply.css'
+import { useNavigate } from 'react-router-dom';
+import './Apply.css';
 
 const Apply = () => {
+  const navigate = useNavigate();
   const [programs, setPrograms] = useState([]);
+
+  // Redirect if not logged in
+  useEffect(() => {
+    const userEmail = localStorage.getItem('userEmail');
+    if (!userEmail) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   useEffect(() => {
     fetch('http://localhost:5000/api/programs')
@@ -12,10 +22,12 @@ const Apply = () => {
       .then(data => setPrograms(data));
   }, []);
 
+  const userEmail = localStorage.getItem('userEmail');
+
   const formik = useFormik({
     initialValues: {
       full_name: '',
-      email: '',
+      email: userEmail || '',
       program_id: '',
     },
     validationSchema: Yup.object({
@@ -52,8 +64,8 @@ const Apply = () => {
           type="email"
           name="email"
           placeholder="Email"
-          onChange={formik.handleChange}
           value={formik.values.email}
+          disabled
         />
         {formik.errors.email && <p>{formik.errors.email}</p>}
 
