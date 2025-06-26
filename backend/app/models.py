@@ -3,9 +3,9 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
-# ----------------------------
+
 # User Model
-# ----------------------------
+
 class User(db.Model):
     __tablename__ = 'users'
 
@@ -19,9 +19,9 @@ class User(db.Model):
     applications = db.relationship('Application', back_populates='user')
 
 
-# ----------------------------
+
 # Program Model
-# ----------------------------
+
 class Program(db.Model):
     __tablename__ = 'programs'
 
