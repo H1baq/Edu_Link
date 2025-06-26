@@ -50,19 +50,27 @@ def submit_application():
 @api.route('/messages', methods=['POST'])
 def send_message():
     data = request.get_json()
-    subject = data.get('subject')
-    content = data.get('content')
+    name = data.get('name')
     email = data.get('email')
+    message = data.get('message')
 
+    if not all([name, email, message]):
+        return jsonify({"error": "All fields are required"}), 400
+
+    # Check if user exists
     user = User.query.filter_by(email=email).first()
     if not user:
-        return jsonify({"error": "User not found"}), 404
+        user = User(full_name=name, email=email)
+        db.session.add(user)
+        db.session.commit()
 
-    message = Message(subject=subject, content=content, user_id=user.id)
-    db.session.add(message)
+    new_msg = Message(content=message, user_id=user.id)
+    db.session.add(new_msg)
     db.session.commit()
 
-    return jsonify({"message": "Message received"}), 201
+    return jsonify({"message": "Message received successfully!"}), 201
+
+
 
 # GET /users/:email — fetch user ID by email
 @api.route('/users/<email>', methods=['GET'])
