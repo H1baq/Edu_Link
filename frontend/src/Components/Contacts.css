@@ -1,7 +1,8 @@
 .contacts {
   padding: 2rem 0rem;
-  background-color: hsl(264, 21%, 14%);
-  color: whitesmoke;
+  background: linear-gradient(to right, #6874e0, #e6b264);
+  color: black;
+  margin-top: 2rem;
 }
 
 .contact-container {
@@ -16,15 +17,18 @@
 
 .contact-info p {
   margin-bottom: 3.5rem;
+    font-weight: 700;
+
 }
 .contact-info a {
-  color: whitesmoke;
+  color: black;
   text-decoration: none;
+  font-weight: 700;
 }
 
 .contact-info svg {
   margin-right: 0.5rem;
-  color: whitesmoke;
+  color: black;
 }
 
 
@@ -51,7 +55,7 @@
 }
 
 .contact-form button {
-  background-color: rgb(77, 77, 97);
+  background-color:black;
   color: white;
   padding: 0.75rem;
   border: none;

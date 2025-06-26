@@ -1,6 +1,5 @@
 .footer {
-  background-color: rgb(77, 77, 97);
-  color: white;
+ background-color: rgb(37, 77, 55);  color: white;
   text-align: center;
   padding: 5rem 1rem;
   margin-top: 3rem;
@@ -15,11 +14,11 @@
 }
 
 .footer-links a {
-  color: #ccc;
+  color: white;
   text-decoration: none;
   font-weight: 800;
 }
 
 .footer-links a:hover {
-  color: white;
+  color: black;
 }

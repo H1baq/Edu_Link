@@ -1,6 +1,6 @@
 .navbar {
   padding: 1rem 2rem;
-  background-color: rgb(77, 77, 97);
+  background-color: rgb(37, 77, 55);
   position: sticky;
   color: rgb(14, 12, 12);
   top: 0;
@@ -29,13 +29,13 @@
 
 .nav-links li a {
   text-decoration: none;
-  color: #f1e8e8;
+  color: white;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .nav-links li a:hover {
-  color: red;
+  color: rgb(214, 120, 12);
 }
 
 /* Hamburger */
@@ -54,7 +54,7 @@
     top: 70px;
     right: 0;
     flex-direction: column;
-    background-color: rgb(50, 50, 121);
+    background-color: black;
     width: 100%;
     padding: 1rem 0;
     display: none;
