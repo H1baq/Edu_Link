@@ -1,11 +1,22 @@
 // src/Components/Programs.jsx
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { LoginContext } from '../App';
 import './Programs.css';
 
 const Programs = () => {
   const [programs, setPrograms] = useState([]);
+  const { isLoggedIn, setRedirectPath } = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  const handleEnrollClick = () => {
+    if (isLoggedIn) {
+      navigate('/apply');
+    } else {
+      setRedirectPath('/apply');
+      navigate('/enroll-login');
+    }
+  };
 
   useEffect(() => {
     fetch('http://localhost:5000/api/programs')
@@ -22,7 +33,9 @@ const Programs = () => {
           <div className="program-card" key={program.id}>
             <h3>{program.title}</h3>
             <p>{program.description}</p>
-            <Link to="/apply" className="enroll-btn">Enroll Now</Link>
+            <button className="enroll-btn" onClick={handleEnrollClick}>
+              Enroll Now
+            </button>
           </div>
         ))}
       </div>
