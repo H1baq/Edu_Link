@@ -1,30 +1,42 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { LoginContext } from '../App';
 import './Login.css';
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [applications, setApplications] = useState([]);
   const [error, setError] = useState('');
+  const { redirectPath, setRedirectPath } = useContext(LoginContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const message = location.state?.message;
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://localhost:5000/api/users/${email}`);
-    const data = await res.json();
-    if (res.ok) {
-      const appsRes = await fetch(`http://localhost:5000/api/applications/${data.id}`);
-      const apps = await appsRes.json();
-      setApplications(apps);
-      setError('');
-    } else {
-      setApplications([]);
-      setError(data.error);
+
+    try {
+      const res = await fetch(`http://localhost:5000/api/users/${email}`);
+      const data = await res.json();
+
+      if (res.ok) {
+        localStorage.setItem('userEmail', email);
+
+        
+        const nextPath = redirectPath || '/apply';
+        setRedirectPath(null);
+        navigate(nextPath);
+      } else {
+        setError(data.error);
+      }
+    } catch {
+      setError('Login failed.');
     }
   };
 
   return (
     <div className="login">
-      <h2>Check Your Application</h2>
+      <h2>Log In to Enroll</h2>
+      {message && <p className="info">{message}</p>}
       <form onSubmit={handleLogin}>
         <input
           type="email"
@@ -33,26 +45,10 @@ const Login = () => {
           value={email}
           required
         />
-        <button type="submit">View Applications</button>
+        <button type="submit">Log In</button>
       </form>
 
-      {error && <p>{error}</p>}
-
-      {applications.length > 0 && (
-        <div className="application-list">
-          <h3>Your Applications:</h3>
-        <ul>
-  {applications.map((app, index) => (
-    <li key={index}>
-      <strong>{app.program_title}</strong><br />
-      Status: {app.status}<br />
-      Applied On: {app.applied_on}
-    </li>
-  ))}
-</ul>
-
-        </div>
-      )}
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };
